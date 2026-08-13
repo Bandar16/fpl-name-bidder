@@ -7,15 +7,15 @@
     <title>Fantasy Name Bidder</title>
     <style>
       :root {
-        --pl-purple: #37003c;
-        --pl-deep: #240029;
-        --pl-pink: #e90052;
-        --pl-green: #00ff87;
-        --pl-cream: #f4f1ed;
+        --purple: #37003c;
+        --purple-dark: #240029;
+        --pink: #e90052;
+        --green: #00ff87;
+        --cream: #f4f1ed;
         --ink: #19121c;
         --muted: #766d78;
         --line: #e7e2e8;
-        --shadow: 0 18px 45px rgba(34, 0, 39, 0.16);
+        --shadow: 0 18px 45px rgba(34, 0, 39, 0.15);
       }
 
       * { box-sizing: border-box; }
@@ -23,171 +23,244 @@
       body {
         min-width: 320px;
         margin: 0;
+        background: var(--cream);
         color: var(--ink);
-        background:
-          radial-gradient(circle at 90% 9%, rgba(0, 255, 135, 0.17), transparent 22rem),
-          linear-gradient(180deg, var(--pl-purple) 0 376px, var(--pl-cream) 376px 100%);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
-
       button, input { font: inherit; }
       button { cursor: pointer; }
       .page { width: min(1120px, calc(100% - 32px)); margin: auto; }
 
+      .masthead {
+        color: #fff;
+        background:
+          radial-gradient(circle at 87% 18%, rgba(0, 255, 135, 0.2), transparent 23rem),
+          linear-gradient(116deg, #37003c, #270131 72%, #302454);
+      }
       header {
         display: flex;
+        min-height: 78px;
         align-items: center;
         justify-content: space-between;
-        min-height: 76px;
-        color: white;
       }
-      .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -0.04em; }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 950; letter-spacing: -0.045em; line-height: .9; }
       .brand-mark {
-        display: grid; place-items: center;
-        width: 34px; height: 34px; border-radius: 11px;
-        color: var(--pl-purple); background: var(--pl-green);
-        transform: rotate(-8deg); font-size: 1.18rem;
+        display: grid;
+        width: 35px;
+        height: 35px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--green);
+        color: var(--purple);
+        font-size: 1rem;
+        font-weight: 1000;
+        transform: rotate(-8deg);
       }
-      .brand span { font-size: 1.13rem; }
+      .brand span { font-size: 1.1rem; }
       .how-it-works {
-        border: 0; background: transparent; color: #fff; opacity: .8;
-        font-weight: 700; font-size: .87rem;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        font-size: .82rem;
+        font-weight: 850;
+        letter-spacing: .03em;
+        opacity: .82;
       }
-      .how-it-works:hover { opacity: 1; color: var(--pl-green); }
+      .how-it-works:hover { color: var(--green); opacity: 1; }
 
-      .hero { color: white; padding: 49px 0 83px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(250px, .65fr); gap: 42px; align-items: end; padding: 47px 0 58px; }
       .eyebrow {
-        display: inline-flex; align-items: center; gap: 8px;
-        margin: 0 0 17px; color: var(--pl-green); text-transform: uppercase;
-        letter-spacing: .125em; font-size: .71rem; font-weight: 900;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 14px;
+        color: var(--green);
+        font-size: .69rem;
+        font-weight: 950;
+        letter-spacing: .14em;
+        text-transform: uppercase;
       }
-      .eyebrow::before { content: ""; display: block; width: 23px; height: 2px; background: currentColor; }
-      h1 { max-width: 690px; margin: 0; font-size: clamp(2.65rem, 6vw, 5.25rem); line-height: .93; letter-spacing: -.07em; }
-      h1 em { color: var(--pl-green); font-style: normal; }
-      .hero-copy { max-width: 545px; margin: 22px 0 0; color: #d9cddd; font-size: 1.04rem; line-height: 1.55; }
-      .hero-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 31px; font-weight: 750; font-size: .84rem; }
-      .hero-meta span { display: flex; align-items: center; gap: 8px; }
-      .hero-meta b { color: var(--pl-green); font-size: 1.2rem; }
+      .eyebrow::before { width: 24px; height: 2px; background: currentColor; content: ""; }
+      h1 { max-width: 665px; margin: 0; font-size: clamp(2.8rem, 6vw, 5.4rem); line-height: .88; letter-spacing: -.07em; }
+      h1 em { color: var(--green); font-style: normal; }
+      .hero-copy { max-width: 365px; margin: 0 0 5px; color: #e1d6e4; font-size: .98rem; line-height: 1.55; }
+      .hero-steps { display: flex; flex-wrap: wrap; gap: 14px 21px; margin-top: 28px; font-size: .76rem; font-weight: 800; }
+      .hero-steps b { margin-right: 5px; color: var(--green); font-size: 1rem; }
 
-      main { display: grid; grid-template-columns: minmax(290px, .9fr) minmax(0, 1.4fr); gap: 28px; align-items: start; margin-top: -48px; padding-bottom: 54px; }
+      main { padding: 36px 0 54px; }
       .card { border-radius: 18px; box-shadow: var(--shadow); }
-      .bid-card { overflow: hidden; background: white; }
-      .card-head { padding: 25px 26px 21px; color: #fff; background: linear-gradient(120deg, #e90052, #bf0052); }
-      .card-head h2, .board-head h2 { margin: 0; letter-spacing: -.045em; }
-      .card-head h2 { font-size: 1.45rem; }
-      .card-head p { margin: 7px 0 0; color: #ffe2ec; font-size: .88rem; line-height: 1.35; }
-      form { padding: 24px 26px 26px; }
-      label { display: block; margin: 0 0 7px; color: #514957; font-size: .76rem; font-weight: 800; }
-      .field { margin-bottom: 17px; }
-      input {
-        width: 100%; height: 49px; border: 1px solid var(--line); border-radius: 9px;
-        padding: 0 13px; outline: none; background: #fcfbfc; color: var(--ink); font-weight: 650;
-        transition: border-color .15s, box-shadow .15s;
-      }
-      input::placeholder { color: #aaa1ac; font-weight: 500; }
-      input:focus { border-color: var(--pl-pink); box-shadow: 0 0 0 3px rgba(233, 0, 82, .12); }
-      .bid-input { position: relative; }
-      .bid-input input { padding-left: 48px; }
-      .currency { position: absolute; left: 14px; top: 14px; color: var(--pl-pink); font-size: .84rem; font-weight: 900; }
-      .submit-btn {
-        width: 100%; min-height: 52px; margin-top: 3px; border: 0; border-radius: 9px;
-        color: var(--pl-purple); background: var(--pl-green); font-weight: 900; letter-spacing: .01em;
-        box-shadow: 0 5px 0 #00c869; transition: transform .12s, box-shadow .12s, filter .12s;
-      }
-      .submit-btn:hover { filter: brightness(1.04); transform: translateY(-1px); box-shadow: 0 6px 0 #00c869; }
-      .submit-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #00c869; }
-      .submit-btn:disabled { cursor: wait; filter: saturate(.55); opacity: .76; }
-      .form-note { min-height: 21px; margin: 15px 0 0; color: var(--muted); text-align: center; font-size: .77rem; }
-      .form-note.success { color: #008845; font-weight: 750; }
-      .form-note.error { color: #c40043; font-weight: 750; }
 
-      .board { min-width: 0; background: white; }
-      .board-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 25px 26px 19px; }
-      .board-head h2 { font-size: 1.6rem; }
-      .board-head p { margin: 4px 0 0; color: var(--muted); font-size: .82rem; }
-      .live { display: flex; align-items: center; gap: 7px; color: #007e42; background: #e5fff2; border-radius: 999px; padding: 6px 10px; text-transform: uppercase; letter-spacing: .08em; font-size: .62rem; font-weight: 900; white-space: nowrap; }
+      .leaderboard-area { display: grid; gap: 20px; }
+      .spotlight {
+        display: grid;
+        grid-template-columns: minmax(0, 1.65fr) minmax(210px, .75fr);
+        gap: 16px;
+      }
+      .winner-card {
+        position: relative;
+        min-height: 170px;
+        overflow: hidden;
+        padding: 26px 30px;
+        border-radius: 18px;
+        color: #fff;
+        background: linear-gradient(112deg, #4d0058, #850051);
+        box-shadow: var(--shadow);
+      }
+      .winner-card::after {
+        position: absolute;
+        right: -35px;
+        bottom: -105px;
+        width: 230px;
+        height: 230px;
+        border: 26px solid rgba(0, 255, 135, .15);
+        border-radius: 50%;
+        content: "";
+      }
+      .winner-label, .stat-label { position: relative; z-index: 1; margin: 0; color: var(--green); font-size: .67rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+      .winner-name { position: relative; z-index: 1; overflow: hidden; margin: 10px 0 4px; font-size: clamp(1.65rem, 4vw, 2.7rem); font-weight: 950; letter-spacing: -.055em; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
+      .winner-bid { position: relative; z-index: 1; margin: 0; color: var(--green); font-size: 1.3rem; font-weight: 950; }
+      .winner-person { position: relative; z-index: 1; margin: 7px 0 0; color: #eadcec; font-size: .8rem; font-weight: 700; }
+      .total-card { display: flex; min-height: 170px; flex-direction: column; justify-content: center; padding: 26px; border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+      .stat-label { color: var(--muted); }
+      .total-bid { margin: 9px 0 2px; color: var(--purple); font-size: clamp(1.65rem, 4vw, 2.35rem); font-weight: 950; letter-spacing: -.06em; }
+      .total-note { margin: 0; color: var(--muted); font-size: .8rem; font-weight: 650; }
+
+      .board { min-width: 0; overflow: hidden; background: #fff; }
+      .board-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 24px 27px 18px; }
+      .board-head h2 { margin: 0; font-size: 1.58rem; letter-spacing: -.055em; }
+      .board-head p { margin: 4px 0 0; color: var(--muted); font-size: .81rem; }
+      .live { display: flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; color: #007e42; background: #e5fff2; font-size: .62rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
       .live i { width: 6px; height: 6px; border-radius: 50%; background: #00b861; box-shadow: 0 0 0 3px rgba(0, 184, 97, .17); }
-      .column-labels, .entry { display: grid; grid-template-columns: 42px minmax(100px, 1fr) minmax(120px, 1.35fr) minmax(72px, auto); align-items: center; gap: 10px; }
-      .column-labels { padding: 10px 26px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: #a097a3; font-size: .64rem; font-weight: 900; letter-spacing: .085em; text-transform: uppercase; }
+      .column-labels, .entry { display: grid; grid-template-columns: 42px minmax(105px, 1fr) minmax(150px, 1.35fr) minmax(80px, auto); grid-template-areas: "rank person suggestion amount"; align-items: center; gap: 10px; }
+      .column-labels { padding: 10px 27px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: #a097a3; font-size: .64rem; font-weight: 950; letter-spacing: .085em; text-transform: uppercase; }
       .column-labels span:last-child { text-align: right; }
       .entries { padding: 4px 12px 12px; }
-      .entry { position: relative; min-height: 62px; padding: 9px 14px; border-radius: 10px; }
+      .entry { min-height: 62px; padding: 9px 14px; border-radius: 10px; }
       .entry:not(:last-child) { border-bottom: 1px solid #f0ecf1; border-radius: 0; }
-      .entry.top { margin-top: 3px; color: white; background: linear-gradient(100deg, #47004e, #730060); }
+      .entry.top { margin-top: 3px; color: #fff; background: linear-gradient(100deg, #47004e, #730060); }
       .entry.top + .entry { margin-top: 3px; }
-      .rank { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 7px; color: #887f8b; background: #f1edf2; font-size: .75rem; font-weight: 900; }
-      .top .rank { color: var(--pl-purple); background: var(--pl-green); }
-      .person { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; font-weight: 850; }
-      .suggestion { overflow: hidden; color: #69606d; text-overflow: ellipsis; white-space: nowrap; font-size: .83rem; font-weight: 620; }
+      .rank { grid-area: rank; display: grid; width: 25px; height: 25px; place-items: center; border-radius: 7px; color: #887f8b; background: #f1edf2; font-size: .75rem; font-weight: 950; }
+      .top .rank { color: var(--purple); background: var(--green); }
+      .person { grid-area: person; overflow: hidden; font-size: .85rem; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
+      .suggestion { grid-area: suggestion; overflow: hidden; color: #69606d; font-size: .83rem; font-weight: 620; text-overflow: ellipsis; white-space: nowrap; }
       .top .suggestion { color: #eaddec; }
-      .amount { color: var(--pl-pink); text-align: right; font-size: .95rem; font-weight: 950; }
-      .top .amount { color: var(--pl-green); }
-      .empty { padding: 40px 22px 36px; color: var(--muted); text-align: center; font-size: .9rem; }
+      .amount { grid-area: amount; color: var(--pink); font-size: .95rem; font-weight: 950; text-align: right; }
+      .top .amount { color: var(--green); }
+      .empty { padding: 39px 22px 35px; color: var(--muted); font-size: .9rem; text-align: center; }
 
-      .rules { display: flex; gap: 10px; padding: 4px 4px 42px; color: #69606d; font-size: .76rem; line-height: 1.5; }
-      .rules b { color: var(--pl-purple); }
-      .rules::before { content: "i"; display: grid; flex: none; place-items: center; width: 18px; height: 18px; margin-top: 1px; border: 1px solid #9a929c; border-radius: 50%; font-size: .67rem; font-weight: 900; }
-      footer { padding: 18px 0 31px; color: #867d89; text-align: center; font-size: .72rem; }
+      .bid-card { width: min(530px, 100%); margin: 30px auto 0; overflow: hidden; background: #fff; }
+      .card-head { padding: 24px 26px 20px; color: #fff; background: linear-gradient(120deg, #e90052, #bf0052); }
+      .card-head h2 { margin: 0; font-size: 1.45rem; letter-spacing: -.045em; }
+      .card-head p { margin: 7px 0 0; color: #ffe2ec; font-size: .88rem; }
+      form { padding: 24px 26px 26px; }
+      label { display: block; margin: 0 0 7px; color: #514957; font-size: .76rem; font-weight: 850; }
+      .field { margin-bottom: 17px; }
+      input { width: 100%; height: 49px; border: 1px solid var(--line); border-radius: 9px; padding: 0 13px; outline: none; background: #fcfbfc; color: var(--ink); font-weight: 650; transition: border-color .15s, box-shadow .15s; }
+      input::placeholder { color: #aaa1ac; font-weight: 500; }
+      input:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(233, 0, 82, .12); }
+      .submit-btn { width: 100%; min-height: 52px; margin-top: 3px; border: 0; border-radius: 9px; color: var(--purple); background: var(--green); box-shadow: 0 5px 0 #00c869; font-weight: 950; letter-spacing: .01em; transition: transform .12s, box-shadow .12s, filter .12s; }
+      .submit-btn:hover { box-shadow: 0 6px 0 #00c869; filter: brightness(1.04); transform: translateY(-1px); }
+      .submit-btn:active { box-shadow: 0 2px 0 #00c869; transform: translateY(3px); }
+      .submit-btn:disabled { cursor: wait; filter: saturate(.55); opacity: .76; }
+      .form-note { min-height: 21px; margin: 15px 0 0; color: var(--muted); font-size: .77rem; text-align: center; }
+      .form-note.success { color: #008845; font-weight: 750; }
+      .form-note.error { color: #c40043; font-weight: 750; }
+      .rules { display: flex; gap: 10px; padding: 37px 4px 40px; color: #69606d; font-size: .77rem; line-height: 1.5; }
+      .rules b { color: var(--purple); }
+      .rules::before { display: grid; width: 18px; height: 18px; flex: none; place-items: center; margin-top: 1px; border: 1px solid #9a929c; border-radius: 50%; content: "i"; font-size: .67rem; font-weight: 900; }
+      footer { padding: 18px 0 31px; color: #867d89; font-size: .72rem; text-align: center; }
 
       @media (max-width: 760px) {
-        body { background: linear-gradient(180deg, var(--pl-purple) 0 347px, var(--pl-cream) 347px 100%); }
-        .hero { padding: 33px 0 73px; }
-        main { grid-template-columns: 1fr; gap: 22px; margin-top: -44px; }
+        .hero { grid-template-columns: 1fr; gap: 18px; padding: 34px 0 40px; }
+        .hero-copy { max-width: 520px; }
+        .spotlight { grid-template-columns: 1fr; }
+        .winner-card, .total-card { min-height: 145px; }
       }
-      @media (max-width: 490px) {
+      @media (max-width: 500px) {
         .page { width: min(100% - 22px, 1120px); }
-        header { min-height: 64px; }
-        .how-it-works { font-size: .76rem; }
-        h1 { font-size: clamp(2.5rem, 14vw, 3.8rem); }
-        .hero-copy { font-size: .93rem; }
-        .hero-meta { gap: 12px; font-size: .72rem; }
-        .card-head, form, .board-head { padding-left: 18px; padding-right: 18px; }
-        .column-labels { grid-template-columns: 33px minmax(84px, 1fr) minmax(64px, 1.1fr); padding: 10px 16px; }
-        .column-labels span:nth-child(3), .entry .suggestion { display: none; }
-        .entry { grid-template-columns: 33px minmax(84px, 1fr) minmax(64px, auto); padding-left: 7px; padding-right: 7px; }
+        header { min-height: 65px; }
+        .brand span { font-size: .98rem; }
+        .how-it-works { font-size: .7rem; }
+        h1 { font-size: clamp(2.75rem, 14vw, 4rem); }
+        .hero-steps { gap: 8px 14px; font-size: .68rem; }
+        main { padding-top: 22px; }
+        .winner-card, .total-card { padding: 22px; border-radius: 15px; }
+        .winner-name { font-size: 1.7rem; }
+        .board-head, .card-head, form { padding-left: 18px; padding-right: 18px; }
+        .board-head { align-items: flex-start; }
         .live { padding: 6px 8px; }
+        .column-labels { grid-template-columns: 35px minmax(0, 1fr) auto; padding: 10px 16px; }
+        .column-labels .suggestion-label { display: none; }
+        .entry { grid-template-columns: 34px minmax(0, 1fr) auto; grid-template-areas: "rank person amount" "rank suggestion amount"; gap: 3px 8px; min-height: 68px; padding: 11px 7px; }
+        .suggestion { display: block; overflow: hidden; font-size: .72rem; text-overflow: ellipsis; white-space: nowrap; }
+        .person { font-size: .81rem; }
+        .amount { font-size: .86rem; }
+        .rank { align-self: center; }
+        .bid-card { margin-top: 22px; }
+        .rules { padding-top: 30px; }
       }
     </style>
   </head>
   <body>
+    <div class="masthead">
+      <div class="page">
+        <header>
+          <div class="brand"><div class="brand-mark">F</div><span>FANTASY<br />NAME BIDDER</span></div>
+          <button class="how-it-works" type="button" id="rulesButton">HOW IT WORKS</button>
+        </header>
+        <section class="hero" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">Season 2026 / 27</p>
+            <h1 id="page-title">Name the league.<br /><em>Highest bid wins.</em></h1>
+            <div class="hero-steps"><span><b>01</b> Submit</span><span><b>02</b> Outbid</span><span><b>03</b> Claim the name</span></div>
+          </div>
+          <p class="hero-copy">Bring your best Fantasy Premier League name. The highest bid at the deadline earns the right to name this season's league.</p>
+        </section>
+      </div>
+    </div>
+
     <div class="page">
-      <header>
-        <div class="brand"><div class="brand-mark">⚽</div><span>FANTASY<br />NAME BIDDER</span></div>
-        <button class="how-it-works" type="button" id="rulesButton">HOW IT WORKS ↓</button>
-      </header>
-
-      <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Season 2026 / 27</p>
-        <h1>The name.<br /><em>The glory.</em><br />The highest bid.</h1>
-        <p class="hero-copy">Put your best Fantasy Premier League name on the table. The biggest bid earns the right to name this season’s league.</p>
-        <div class="hero-meta"><span><b>01</b> Submit your idea</span><span><b>02</b> Outbid the rest</span><span><b>03</b> Claim the name</span></div>
-      </section>
-
       <main>
+        <section class="leaderboard-area" aria-labelledby="board-title">
+          <div class="spotlight">
+            <article class="winner-card">
+              <p class="winner-label">Current winning name</p>
+              <h2 class="winner-name" id="winnerName">Waiting for the first bid</h2>
+              <p class="winner-bid" id="winnerBid">SAR 0.00</p>
+              <p class="winner-person" id="winnerPerson">Be the first to set the name.</p>
+            </article>
+            <article class="total-card">
+              <p class="stat-label">Total pledged</p>
+              <p class="total-bid" id="totalBid">SAR 0.00</p>
+              <p class="total-note" id="totalNote">0 bids on the board</p>
+            </article>
+          </div>
+
+          <section class="board card">
+            <div class="board-head"><div><h2 id="board-title">The leaderboard</h2><p id="boardSubhead">Top bids, ranked highest first.</p></div><div class="live"><i></i> Live board</div></div>
+            <div class="column-labels"><span>Rank</span><span>Bidder</span><span class="suggestion-label">Suggested name</span><span>Bid</span></div>
+            <div class="entries" id="entries" aria-live="polite"></div>
+          </section>
+        </section>
+
         <section class="bid-card card" aria-labelledby="bid-title">
           <div class="card-head"><h2 id="bid-title">Place a bid</h2><p>Your name, your suggestion, your offer.</p></div>
           <form id="bidForm" novalidate>
             <div class="field"><label for="participant">YOUR NAME</label><input id="participant" name="participant" maxlength="24" autocomplete="name" placeholder="e.g. Mo" required /></div>
             <div class="field"><label for="teamName">SUGGESTED FPL NAME</label><input id="teamName" name="teamName" maxlength="42" placeholder="e.g. Ctrl Alt De Ligt" required /></div>
-            <div class="field"><label for="bidAmount">YOUR BID (SAR)</label><div class="bid-input"><span class="currency">ر.س</span><input id="bidAmount" name="bidAmount" inputmode="decimal" min="0.01" step="0.01" placeholder="0.00" required /></div></div>
-            <button class="submit-btn" type="submit">ADD MY BID →</button>
+            <div class="field"><label for="bidAmount">YOUR BID (SAR)</label><input id="bidAmount" name="bidAmount" inputmode="decimal" min="0.01" step="0.01" placeholder="0.00" required /></div>
+            <button class="submit-btn" type="submit">ADD MY BID</button>
             <p class="form-note" id="formMessage" aria-live="polite">Highest bid leads the board.</p>
           </form>
         </section>
-
-        <section class="board card" aria-labelledby="board-title">
-          <div class="board-head"><div><h2 id="board-title">The leaderboard</h2><p id="boardSubhead">Top bids, ranked highest first.</p></div><div class="live"><i></i> Live board</div></div>
-          <div class="column-labels"><span>Rank</span><span>Bidder</span><span>Suggested name</span><span>Bid</span></div>
-          <div class="entries" id="entries" aria-live="polite"></div>
-        </section>
       </main>
 
-      <section class="rules" id="rules"><span><b>Simple rules:</b> submit one or more bids, keep it friendly, and make sure you can honour your offer. The highest bid at the agreed deadline wins the squad’s Fantasy name.</span></section>
-      <footer>FANTASY NAME BIDDER · A fan-made naming board</footer>
+      <section class="rules" id="rules"><span><b>Simple rules:</b> submit one or more bids, keep it friendly, and make sure you can honour your offer. The highest bid at the agreed deadline wins the league name.</span></section>
+      <footer>FANTASY NAME BIDDER - A fan-made naming board</footer>
     </div>
 
     <script>
-      // This is a public key by design. Database rules only allow viewing and adding bids.
+      // This public key is safe to expose. Database policies only allow reading and adding bids.
       const SUPABASE_URL = "https://uxukhshxzpyoivabjhyg.supabase.co";
       const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_IwDI6v008eynY9xPYv0ohw_jv_51ziw";
       const BIDS_ENDPOINT = `${SUPABASE_URL}/rest/v1/bids`;
@@ -196,11 +269,15 @@
       const entriesNode = document.querySelector("#entries");
       const message = document.querySelector("#formMessage");
       const subhead = document.querySelector("#boardSubhead");
-
+      const winnerName = document.querySelector("#winnerName");
+      const winnerBid = document.querySelector("#winnerBid");
+      const winnerPerson = document.querySelector("#winnerPerson");
+      const totalBid = document.querySelector("#totalBid");
+      const totalNote = document.querySelector("#totalNote");
       let entries = [];
 
       function money(value) {
-        return new Intl.NumberFormat("en-SA", { style: "currency", currency: "SAR", maximumFractionDigits: 2 }).format(value);
+        return new Intl.NumberFormat("en-SA", { style: "currency", currency: "SAR", maximumFractionDigits: 2 }).format(Number(value) || 0);
       }
 
       function text(value) {
@@ -210,10 +287,31 @@
       }
 
       function render() {
-        const sorted = [...entries].sort((a, b) => b.bid - a.bid || new Date(a.created_at || 0) - new Date(b.created_at || 0)).slice(0, 10);
-        subhead.textContent = `${entries.length} ${entries.length === 1 ? "bid" : "bids"} submitted · top 10 shown`;
-        if (!sorted.length) { entriesNode.innerHTML = '<p class="empty">No bids yet — be the first on the board.</p>'; return; }
-        entriesNode.innerHTML = sorted.map((entry, index) => `
+        const sorted = [...entries].sort((a, b) => Number(b.bid) - Number(a.bid) || new Date(a.created_at || 0) - new Date(b.created_at || 0));
+        const topTen = sorted.slice(0, 10);
+        const total = entries.reduce((sum, entry) => sum + Number(entry.bid || 0), 0);
+        const countText = `${entries.length} ${entries.length === 1 ? "bid" : "bids"}`;
+        subhead.textContent = `${countText} submitted - top 10 shown`;
+        totalBid.textContent = money(total);
+        totalNote.textContent = `${countText} on the board`;
+
+        if (sorted.length) {
+          const winner = sorted[0];
+          winnerName.textContent = winner.suggestion;
+          winnerBid.textContent = money(winner.bid);
+          winnerPerson.textContent = `Suggested by ${winner.participant}`;
+        } else {
+          winnerName.textContent = "Waiting for the first bid";
+          winnerBid.textContent = money(0);
+          winnerPerson.textContent = "Be the first to set the name.";
+        }
+
+        if (!topTen.length) {
+          entriesNode.innerHTML = '<p class="empty">No bids yet - be the first on the board.</p>';
+          return;
+        }
+
+        entriesNode.innerHTML = topTen.map((entry, index) => `
           <article class="entry ${index === 0 ? "top" : ""}">
             <span class="rank">${index + 1}</span>
             <span class="person" title="${text(entry.participant)}">${text(entry.participant)}</span>
@@ -240,40 +338,36 @@
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        const person = form.participant.value.trim();
+        const participant = form.participant.value.trim();
         const suggestion = form.teamName.value.trim();
-        const normalizedBid = form.bidAmount.value.trim().replace(/,/g, "");
-        const bid = Number(normalizedBid);
-        if (!person || !suggestion || !Number.isFinite(bid) || bid <= 0) {
+        const bid = Number(form.bidAmount.value.trim().replace(/,/g, ""));
+        if (!participant || !suggestion || !Number.isFinite(bid) || bid <= 0) {
           message.textContent = "Add your name, an FPL name, and a valid bid above SAR 0.";
           message.className = "form-note error";
           return;
         }
+
         const submitButton = form.querySelector("button[type=submit]");
         submitButton.disabled = true;
-        submitButton.textContent = "ADDING BID…";
+        submitButton.textContent = "ADDING BID...";
         try {
           const response = await fetch(BIDS_ENDPOINT, {
             method: "POST",
-            headers: {
-              apikey: SUPABASE_PUBLISHABLE_KEY,
-              "Content-Type": "application/json",
-              Prefer: "return=minimal"
-            },
-            body: JSON.stringify({ participant: person, suggestion, bid })
+            headers: { apikey: SUPABASE_PUBLISHABLE_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+            body: JSON.stringify({ participant, suggestion, bid })
           });
           if (!response.ok) throw new Error("Could not add the bid.");
           form.reset();
           await loadEntries(true);
-          message.textContent = `Bid added — ${money(bid)} is now on the shared board.`;
+          message.textContent = `Bid added - ${money(bid)} is now on the shared board.`;
           message.className = "form-note success";
-          document.querySelector("#board-title").scrollIntoView({ behavior: "smooth", block: "center" });
+          document.querySelector("#board-title").scrollIntoView({ behavior: "smooth", block: "start" });
         } catch (error) {
           message.textContent = "Your bid could not be added. Please check your connection and try again.";
           message.className = "form-note error";
         } finally {
           submitButton.disabled = false;
-          submitButton.textContent = "ADD MY BID →";
+          submitButton.textContent = "ADD MY BID";
         }
       });
 
@@ -283,3 +377,4 @@
     </script>
   </body>
 </html>
+
